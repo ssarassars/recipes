@@ -1,0 +1,55 @@
+//- Saranya R
+//- 100981198
+
+doctype html
+html
+	head
+		title COMP 2406 Recipe Viewer
+		link(rel='stylesheet' href='style.css')
+		if user && user.auth
+			script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+			script(src='/recipePage.js')
+			
+	body
+		if user && user.auth
+			div(id="heading")
+				h1 Comp2406 Recipes Database!
+				h1 Welcome, #{user.username}.
+			div(id="content")
+				| Recipe:
+				br
+				select(id='recipeSelect')
+				br
+				button(id='recipeViewButton' type='button') View
+				br
+				hr
+				br
+				| Name:
+				br
+				input(id='recipeName' type='text' size='20')
+				br
+				| Duration:
+				br
+				input(id='recipeDuration' type='text' size='20')
+				br
+				| Ingredients:
+				br
+				textarea(id='recipeIngredients' cols='100' rows='10')
+				br
+				| Steps:
+				br
+				textarea(id='recipeDirections' cols='100' rows='10')
+				br
+				| Notes:
+				br
+				textarea(id='recipeNotes' cols='100' rows='10')
+				br
+				br
+				button(id='recipeSubmitButton' type='button') Submit
+				|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				div(id="confirmed")
+					img(src="/check_mark.png")
+		else
+			h1 Not logged in.
+			p Please #[a(href='/login') login] to get started.
+			p Visit the #[a(href='/register') registration page] to create a new account.
